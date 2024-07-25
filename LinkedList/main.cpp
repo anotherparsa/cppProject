@@ -43,5 +43,8 @@ class LinkedList{
                 cout << "The Tail address : " << this->tail << " The Tail value : " << this->tail->value << endl;
             }
         }
-        
+
+        void print_length(){
+            cout << "Lenght of the list : " << this->length << endl;
+        }
 }
