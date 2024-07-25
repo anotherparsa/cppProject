@@ -11,3 +11,16 @@ class Node{
             this->next = nullptr;
         }
 };
+
+class LinkedList{
+    private:
+        Node* head;
+        Node* tail;
+        int length;
+    public:
+        LinkedList(){
+            this->head = nullptr;
+            this->tail = nullptr;
+            this->length = 0;
+        }
+}
