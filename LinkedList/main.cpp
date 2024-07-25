@@ -35,5 +35,13 @@ class LinkedList{
                 cout << "The Head address : " << this->head << " The Head value : " << this->head->value << endl;
             }
         }
+
+        void print_tail(){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else{
+                cout << "The Tail address : " << this->tail << " The Tail value : " << this->tail->value << endl;
+            }
+        }
         
 }
