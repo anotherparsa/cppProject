@@ -47,4 +47,18 @@ class LinkedList{
         void print_length(){
             cout << "Lenght of the list : " << this->length << endl;
         }
+
+        void print_list(){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else{
+                cout << "List Items: " << endl;
+                Node* temp = this->head;
+                while(temp != nullptr){
+                    cout << temp->value << " ";
+                    temp = temp->next;
+                }
+                cout << endl;
+            }
+        }
 }
