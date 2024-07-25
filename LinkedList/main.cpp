@@ -25,7 +25,7 @@ class LinkedList{
         }
 
         bool is_list_empty(){
-            return (this->head == nullptr || this->length == 0)
+            return (this->head == nullptr || this->length == 0);
         }
 
         void print_head(){
@@ -92,3 +92,19 @@ class LinkedList{
         }
 
 };
+
+int main(){
+    LinkedList* my_linked_list = new LinkedList;
+    my_linked_list->append_node(1);
+    my_linked_list->append_node(2);
+    my_linked_list->append_node(3);
+    my_linked_list->print_head();
+    my_linked_list->print_tail();
+    my_linked_list->print_length();
+    my_linked_list->print_list();
+    my_linked_list->append_node(4);
+    my_linked_list->print_head();
+    my_linked_list->print_tail();
+    my_linked_list->print_length();
+    my_linked_list->print_list();
+}
