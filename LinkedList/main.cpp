@@ -61,4 +61,21 @@ class LinkedList{
                 cout << endl;
             }
         }
+
+        Node* get_node(int index){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list " << endl;
+                return nullptr;
+            }else if (index < 0 || index >= this->length){
+                cout << "Invalid index " << endl;
+                return nullptr;
+            }else{
+                Node* temp = this->head;
+                for (int i = 0 ; i < this->length ; i++){
+                    temp = temp->next;
+                }
+                return temp;
+            }
+        }
+
 }
