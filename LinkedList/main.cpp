@@ -27,5 +27,13 @@ class LinkedList{
         bool is_list_empty(){
             return (this->head == nullptr || this->length == 0)
         }
+
+        void print_head(){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else{
+                cout << "The Head address : " << this->head << " The Head value : " << this->head->value << endl;
+            }
+        }
         
 }
