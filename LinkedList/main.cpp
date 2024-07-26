@@ -71,7 +71,7 @@ class LinkedList{
                 return nullptr;
             }else{
                 Node* temp = this->head;
-                for (int i = 0 ; i < this->length ; i++){
+                for (int i = 0 ; i < index ; i++){
                     temp = temp->next;
                 }
                 return temp;
@@ -104,6 +104,24 @@ class LinkedList{
             cout << "New Node with the value of " << value << " Has been added to the beginning of the list" << endl;
         }
 
+        void delete_last_node(){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else{
+                Node* temp = this->tail;
+                Node* previous_node = this->get_node(this->length - 2);
+                previous_node->next = nullptr;
+                this->tail = previous_node;
+                cout << "Node with the value of " << temp->value << " Has been deleted from the end of the list" << endl;
+                delete temp;
+                this->length--;
+                if (this->length == 0){
+                    this->head = nullptr;
+                    this->tail = nullptr;
+                }
+            }
+        }
+
 };
 
 int main(){
@@ -121,6 +139,16 @@ int main(){
     my_linked_list->print_length();
     my_linked_list->print_list();
     my_linked_list->prepend_node(5);
+    my_linked_list->print_head();
+    my_linked_list->print_tail();
+    my_linked_list->print_length();
+    my_linked_list->print_list();
+    my_linked_list->delete_last_node();
+    my_linked_list->print_head();
+    my_linked_list->print_tail();
+    my_linked_list->print_length();
+    my_linked_list->print_list();
+    my_linked_list->delete_last_node();
     my_linked_list->print_head();
     my_linked_list->print_tail();
     my_linked_list->print_length();
