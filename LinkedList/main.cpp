@@ -125,6 +125,25 @@ class LinkedList{
             }
         }
 
+        void delete_first_node(){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else if (this->length == 1){
+                Node* temp = this->head;
+                cout << "Node with the value of " << temp->value << " Has been deleted from the beginning of the list" << endl;
+                delete temp;
+                this->length--;
+                this->head = nullptr;
+                this->tail = nullptr;
+            }else{
+                Node* temp = this->head;
+                this->head = this->head->next;
+                cout << "Node with the value of " << temp->value << " Has been deleted from the beginning of the list" << endl;
+                delete temp;
+                this->length--;
+            }
+        }
+
 };
 
 int main(){
@@ -135,12 +154,12 @@ int main(){
     my_linked_list->print_tail();
     my_linked_list->print_length();
     my_linked_list->print_list();
-    my_linked_list->delete_last_node();
-    my_linked_list->delete_last_node();
+    my_linked_list->delete_first_node();
+    my_linked_list->delete_first_node();
     my_linked_list->print_head();
     my_linked_list->print_tail();
     my_linked_list->print_length();
     my_linked_list->print_list();
-    my_linked_list->delete_last_node();
+    my_linked_list->delete_first_node();
 
 }
