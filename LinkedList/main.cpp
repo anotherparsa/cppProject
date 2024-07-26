@@ -67,7 +67,7 @@ class LinkedList{
                 cout << "There are no Nodes in the list " << endl;
                 return nullptr;
             }else if (index < 0 || index >= this->length){
-                cout << "Invalid index " << endl;
+                cout << "Invalid Index " << endl;
                 return nullptr;
             }else{
                 Node* temp = this->head;
@@ -144,6 +144,18 @@ class LinkedList{
             }
         }
 
+        void set_node_value(int index, int value){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else if (index < 0 || index >= this->length){
+                cout << "Invalid Index" << endl;
+            }else{
+                Node* temp = this->get_node(index);
+                cout << "Node at the index of " << index << " Has the value of " << temp->value ;
+                temp->value = value;
+                cout << " Now the value is set to " << value << endl;
+            }
+        }
 };
 
 int main(){
@@ -161,5 +173,16 @@ int main(){
     my_linked_list->print_length();
     my_linked_list->print_list();
     my_linked_list->delete_first_node();
+    my_linked_list->append_node(5);
+    my_linked_list->append_node(6);
+    my_linked_list->set_node_value(0, 10);
+    my_linked_list->set_node_value(1, 222);
+    my_linked_list->set_node_value(2, 233);
+    my_linked_list->append_node(32);
+    my_linked_list->set_node_value(2, 320);
+    my_linked_list->print_head();
+    my_linked_list->print_tail();
+    my_linked_list->print_length();
+    my_linked_list->print_list();
 
 }
