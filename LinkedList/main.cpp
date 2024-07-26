@@ -91,6 +91,19 @@ class LinkedList{
             cout << "New Node with the value of " << value << " Has been added to the end of the list" << endl;
         }
 
+        void prepend_node(int value){
+            Node* new_node = new Node(value);
+            if (this->is_list_empty()){
+                this->head = new_node;
+                this->tail = new_node;
+            }else{
+                new_node->next = this->head;
+                this->head = new_node;
+            }
+            this->length++;
+            cout << "New Node with the value of " << value << " Has been added to the beginning of the list" << endl;
+        }
+
 };
 
 int main(){
@@ -103,6 +116,11 @@ int main(){
     my_linked_list->print_length();
     my_linked_list->print_list();
     my_linked_list->append_node(4);
+    my_linked_list->print_head();
+    my_linked_list->print_tail();
+    my_linked_list->print_length();
+    my_linked_list->print_list();
+    my_linked_list->prepend_node(5);
     my_linked_list->print_head();
     my_linked_list->print_tail();
     my_linked_list->print_length();
