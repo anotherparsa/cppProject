@@ -156,6 +156,23 @@ class LinkedList{
                 cout << " Now the value is set to " << value << endl;
             }
         }
+
+        void insert_node(int index, int value){
+            if (index < 0 || index > this->length){
+                cout << "Invalid Index" << endl;
+            }else if (index == 0){
+                this->prepend_node(value);
+            }else if (index == this->length){
+                this->append_node(value);
+            }else{
+                Node* new_node = new Node(value);
+                Node* previous = this->get_node(index - 1);
+                new_node->next = previous->next;
+                previous->next = new_node;
+                this->length++;
+                cout << "New Node with the value of " << value << " Has been added at index " << index << endl;
+            }
+        }
 };
 
 int main(){
@@ -183,6 +200,11 @@ int main(){
     my_linked_list->print_head();
     my_linked_list->print_tail();
     my_linked_list->print_length();
+    my_linked_list->print_list();
+    my_linked_list->insert_node(0, 444);
+    my_linked_list->insert_node(4, 2233);
+    my_linked_list->insert_node(3, 223);
+    my_linked_list->insert_node(212, 333);
     my_linked_list->print_list();
 
 }
