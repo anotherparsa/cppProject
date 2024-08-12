@@ -286,6 +286,10 @@ class LinkedList{
             }
             cout << "List has been purged " << endl;
         }
+
+        ~LinkedList(){
+            this->purge_entire_list();
+        }
 };
 
 int main(){
