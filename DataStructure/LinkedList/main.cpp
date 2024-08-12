@@ -287,6 +287,7 @@ class LinkedList{
             cout << "List has been purged " << endl;
         }
 
+        //it will delete all nodes and free up the memory after the list got deleted
         ~LinkedList(){
             this->purge_entire_list();
         }
