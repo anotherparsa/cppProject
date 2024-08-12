@@ -245,6 +245,25 @@ class LinkedList{
                 cout << "New Node with the value of " << value << " Has been added at index " << index << endl;
             }
         }
+
+        void delete_node(int index){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else if (index < 0 || index >= this->length){
+                cout << "Invalid index" << endl;
+            }else if (index == 0){
+                this->delete_first_node();
+            }else if (index == this->length - 1){
+                this->delete_last_node();
+            }else {
+                Node* temp = this->get_node(index);
+                Node* previous = this->get_node(index - 1);
+                previous->next = temp->next;
+                cout << "The Node with the value of " << temp->value << " Has been removed at the index " << index << endl;
+                delete temp;
+                this->length--;
+            }
+        }
 };
 
 int main(){
@@ -278,5 +297,8 @@ int main(){
     my_linked_list->insert_node(3, 223);
     my_linked_list->insert_node(212, 333);
     my_linked_list->print_list_elements();
-
+    my_linked_list->delete_node(3);
+    my_linked_list->print_list_elements();
+    my_linked_list->delete_node(2);
+    my_linked_list->print_list_elements();
 }
