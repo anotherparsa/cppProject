@@ -251,16 +251,16 @@ int main(){
     LinkedList* my_linked_list = new LinkedList;
     my_linked_list->append_node(1);
     my_linked_list->append_node(2);
-    my_linked_list->print_head();
-    my_linked_list->print_tail();
+    my_linked_list->print_head_of_list();
+    my_linked_list->print_tail_of_list();
     my_linked_list->print_length();
-    my_linked_list->print_list();
+    my_linked_list->print_list_elements();
     my_linked_list->delete_first_node();
     my_linked_list->delete_first_node();
-    my_linked_list->print_head();
-    my_linked_list->print_tail();
+    my_linked_list->print_head_of_list();
+    my_linked_list->print_tail_of_list();
     my_linked_list->print_length();
-    my_linked_list->print_list();
+    my_linked_list->print_list_elements();
     my_linked_list->delete_first_node();
     my_linked_list->append_node(5);
     my_linked_list->append_node(6);
@@ -269,14 +269,14 @@ int main(){
     my_linked_list->set_node_value(2, 233);
     my_linked_list->append_node(32);
     my_linked_list->set_node_value(2, 320);
-    my_linked_list->print_head();
-    my_linked_list->print_tail();
+    my_linked_list->print_head_of_list();
+    my_linked_list->print_tail_of_list();
     my_linked_list->print_length();
-    my_linked_list->print_list();
+    my_linked_list->print_list_elements();
     my_linked_list->insert_node(0, 444);
     my_linked_list->insert_node(4, 2233);
     my_linked_list->insert_node(3, 223);
     my_linked_list->insert_node(212, 333);
-    my_linked_list->print_list();
+    my_linked_list->print_list_elements();
 
 }
