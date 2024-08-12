@@ -246,6 +246,17 @@ class LinkedList{
             }
         }
 
+        //it will take an int as the index of the node that is going to be deleted
+        //then it will check if the list is empty or not, if it's it will show a message, if it's not
+        //it will check to see if the index is valid or not.
+        //if the index be valid then it checks the index, if it's equal to 0 it's same as deleting the first node
+        //if it's equal to list's length - 1 it same as deleting the last index
+        //otherwise that means the node that is going to be deleting is somewhere in the middle.
+        //it will make two Nodes, a temp node which is the node that is going to be deleting and previous node which is the node 
+        //before the node we want to delete, in other words we are going to take the node that is between the node before the node we want to remove 
+        //and the node after the node we want to remove.
+        //so the previous node next node will be the next node of the node we want to remove.
+        //and then we decrement the list's length since a node got removed.
         void delete_node(int index){
             if (this->is_list_empty()){
                 cout << "There are no Nodes in the list" << endl;
@@ -263,6 +274,17 @@ class LinkedList{
                 delete temp;
                 this->length--;
             }
+        }
+        //it will purge the entire list
+        //it will delete the first node at each iteration
+        //unitle the temp node reaches the nullptr
+        void purge_entire_list(){
+            Node* temp = this->head;
+            while (temp != nullptr){
+                temp = temp->next;
+                this->delete_first_node();
+            }
+            cout << "List has been purged " << endl;
         }
 };
 
@@ -300,5 +322,7 @@ int main(){
     my_linked_list->delete_node(3);
     my_linked_list->print_list_elements();
     my_linked_list->delete_node(2);
+    my_linked_list->print_list_elements();
+    my_linked_list->purge_entire_list();
     my_linked_list->print_list_elements();
 }
