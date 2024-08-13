@@ -18,7 +18,7 @@ class LinkedList{
         Node* tail;
         int length;
     public:
-        //makes a Linked List with head node pointing to nullpter, tail node pointing to nullptr and length of 0
+        //makes a Linked List with head node pointing to nullptr, tail node pointing to nullptr and length of 0
         LinkedList(){
             this->head = nullptr;
             this->tail = nullptr;
@@ -77,7 +77,7 @@ class LinkedList{
 
         //it takes an int as index.
         //first it checks if the list is empty or not, if it is, it will show a message.
-        //if it's not it will check if the index is valid or not. index must be bigger than 0 and smaller than the lenght of the list
+        //if it's not it will check if the index is valid or not. index must be bigger than 0 and smaller than the length of the list
         //otherwise it's an invalid index.
         //if the index is valid it will make a temp node with the value of head node.
         //and go forward index times in sequence to reach the node at the index provided.
@@ -105,7 +105,7 @@ class LinkedList{
         //if the list is not empty that menas there are already nodes exist in the list and the new node must be placed after them
         //so the next node of the current tail node must be new node
         //after that the new node will be the last node and the tail node will point to it.
-        //then we increment the list's lenght by one since a new node has been added.
+        //then we increment the list's length by one since a new node has been added.
         void append_node(int value){
             Node* new_node = new Node(value);
             if (this->is_list_empty()){
@@ -126,7 +126,7 @@ class LinkedList{
         //if the list is not empty that menas there are already nodes exist in the list and the new node must be placed before them
         //so the next node of the new node must be the current head node
         //after that the new node will be the first node and the head node will point to it.
-        //then we increment the list's lenght by one since a new node has been added.
+        //then we increment the list's length by one since a new node has been added.
         void prepend_node(int value){
             Node* new_node = new Node(value);
             if (this->is_list_empty()){
@@ -150,7 +150,7 @@ class LinkedList{
         //we call it previous node, the next node of the previous node should be nullptr since it's the new last node.
         //and then tail node will point to that previous node as last node.
         //after that we delete the temp value which was the old last node.
-        //and decrement the list's lenght value by one since a node is deleted.
+        //and decrement the list's length value by one since a node is deleted.
         void delete_last_node(){
             if (this->is_list_empty()){
                 cout << "There are no Nodes in the list" << endl;
@@ -179,7 +179,7 @@ class LinkedList{
         //if the list is not empty and the length is not equal to the 1 that means there are more than one nodes in the list.
         //it makes a temp node and equals it to the head node which is the first node.
         //then we make the node after the current first node as the new first node since the current first node is going to be deleted
-        //and decrement the list's lenght value by one since a node is deleted.
+        //and decrement the list's length value by one since a node is deleted.
         void delete_first_node(){
             if (this->is_list_empty()){
                 cout << "There are no Nodes in the list" << endl;
@@ -291,6 +291,33 @@ class LinkedList{
         ~LinkedList(){
             this->purge_entire_list();
         }
+
+        void is_list_sorted(){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else if (this->length == 1){
+                cout << "There is only one element" << endl;
+            }else {
+                Node* first_node = this->head;
+                Node* second_node = this->head->next;
+                int flag = 1;
+                while (second_node != nullptr){
+                    if (first_node->value > second_node->value){
+                        flag = 0;
+                        break;
+                    }else{
+                        first_node = second_node;
+                        second_node = second_node->next;
+                    }
+                }
+                if (flag) {
+                    cout << "The list is sorted" << endl;
+                }else{
+                    cout << "The list is not sorted" << endl;
+                }
+
+            }
+        }
 };
 
 int main(){
@@ -330,4 +357,18 @@ int main(){
     my_linked_list->print_list_elements();
     my_linked_list->purge_entire_list();
     my_linked_list->print_list_elements();
+    my_linked_list->append_node(1);
+    my_linked_list->append_node(2);
+    my_linked_list->append_node(3);
+    my_linked_list->append_node(4);
+    my_linked_list->print_list_elements();
+    my_linked_list->is_list_sorted();
+    my_linked_list->purge_entire_list();
+    my_linked_list->append_node(1);
+    my_linked_list->append_node(5);
+    my_linked_list->append_node(2);
+    my_linked_list->append_node(0);
+    my_linked_list->print_list_elements();
+    my_linked_list->is_list_sorted();
+
 }
