@@ -329,13 +329,18 @@ class LinkedList{
             for (int i = 1 ; i <= this->length - 1; i++){
                 for (int j = 0 ; j < this->length - i; j++){
                     if (this->get_node(j)->value > this->get_node(j+1)->value){
-                        int temp = this->get_node(j)->value;
-                        this->get_node(j)->value = this->get_node(j + 1)->value;
-                        this->get_node(j + 1)->value = temp;
+                        this->swap_nodes_value(j, j+1);
                     }
                 }
             }
             cout << "Bubble sort finished" << endl;
+        }
+
+        //separate method for swapping node's value
+        void swap_nodes_value(int a, int b){
+            int temp = this->get_node(a)->value;
+            this->get_node(a)->value = this->get_node(b)->value;
+            this->get_node(b)->value = temp;
         }
 };
 
