@@ -292,6 +292,11 @@ class LinkedList{
             this->purge_entire_list();
         }
 
+        //first it will check if the list is empty or not, if it's empty it will show a message
+        //if it's not it will check if the length is equal to 1 or not, if it is, that means there is only one element in the list
+        //if it's not it will make two nodes, first node and second node.
+        //while the second node is not equal to nullptr, it will check if the first node is bigger than the second node or not
+        //if it's that means the list is not sorted.
         void is_list_sorted(){
             if (this->is_list_empty()){
                 cout << "There are no Nodes in the list" << endl;
@@ -317,6 +322,20 @@ class LinkedList{
                 }
 
             }
+        }
+
+        //this is the implementation of bubble sort algorithm on the nodes
+        void bubble_sort_the_list(){
+            for (int i = 1 ; i <= this->length - 1; i++){
+                for (int j = 0 ; j < this->length - i; j++){
+                    if (this->get_node(j)->value > this->get_node(j+1)->value){
+                        int temp = this->get_node(j)->value;
+                        this->get_node(j)->value = this->get_node(j + 1)->value;
+                        this->get_node(j + 1)->value = temp;
+                    }
+                }
+            }
+            cout << "Bubble sort finished" << endl;
         }
 };
 
@@ -370,5 +389,7 @@ int main(){
     my_linked_list->append_node(0);
     my_linked_list->print_list_elements();
     my_linked_list->is_list_sorted();
+    my_linked_list->bubble_sort_the_list();
+    my_linked_list->print_list_elements();
 
 }
