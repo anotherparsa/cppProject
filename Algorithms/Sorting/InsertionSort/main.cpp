@@ -17,14 +17,14 @@ int main(){
 }
 
 void InsertionSort(int arr[], int size){
-    for (int i = 0 ; i <= size - 1 ; i++){
-        int current = arr[i];
+    for (int i = 1 ; i < size ; i++){
+        int currentNumber = arr[i];
         int previous = i - 1;
-        while (previous >= 0 && arr[previous] > current){
+        while (previous >= 0 && arr[previous] > currentNumber){
             arr[previous + 1] = arr[previous];
-            previous = previous - 1;
+            previous--;
         }
-        arr[previous + 1] = current;
+        arr[previous + 1] = currentNumber;
     }
 }
 
