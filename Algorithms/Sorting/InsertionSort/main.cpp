@@ -19,12 +19,12 @@ int main(){
 void InsertionSort(int arr[], int size){
     for (int i = 1 ; i < size ; i++){
         int currentNumber = arr[i];
-        int previous = i - 1;
-        while (previous >= 0 && arr[previous] > currentNumber){
-            arr[previous + 1] = arr[previous];
-            previous--;
+        int j = i - 1;
+        while (j >= 0 && arr[j] > currentNumber){
+            arr[j + 1] = arr[j];
+            j--;
         }
-        arr[previous + 1] = currentNumber;
+        arr[j + 1] = currentNumber;
     }
 }
 
