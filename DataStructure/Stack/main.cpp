@@ -8,8 +8,7 @@ class Node{
         Node* next;
         Node(int value){
             this->value = value;
-            this->next = nullptr;
-            
+            this->next = nullptr;       
         }
 };
 
@@ -39,9 +38,23 @@ class Stack{
                 }
             }
         }
+
+        void push_node(int value){
+            Node* newNode = new Node(value);
+            newNode->next = top;
+            top = newNode;
+            height++;
+        }
+        
 };
 
 int main(){
     Stack* myStack = new Stack(10);
     myStack->printStack();
+    myStack->push_node(1);
+    myStack->push_node(2);
+    myStack->push_node(3);
+    myStack->push_node(4);
+    myStack->printStack();
+
 }
