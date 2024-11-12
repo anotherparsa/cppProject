@@ -46,12 +46,19 @@ class Stack{
             height++;
         }
 
-        void pop_node(){
+        int pop_node(){
+            if (height == 0){
+                return INT8_MIN;
+            }else{
             Node* temp = this->top;
             top = top->next;
-            cout << temp->value << endl;
+            int popped_value = temp->value;
             delete temp;
             this->height--;
+            return popped_value;
+
+
+            }
         }
 
 };
@@ -64,8 +71,8 @@ int main(){
     myStack->push_node(3);
     myStack->push_node(4);
     myStack->printStack();
-    myStack->pop_node();
-    myStack->pop_node();
+    cout << myStack->pop_node() << endl; 
+    cout << myStack->pop_node() << endl; 
     myStack->printStack();
 
 }
