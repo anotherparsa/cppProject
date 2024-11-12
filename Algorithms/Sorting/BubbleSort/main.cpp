@@ -20,23 +20,21 @@ void BubbleSort(int arr[], int size){
     int totalChecks = 0;
     int totalSwaps = 0;
 
-    for (int i = 0 ; i < size - 1 ; i++){
+    for (int i = 0 ; i < size - 1; i++){
         bool swapped = false;
-        
         for(int j = 0 ; j < size - i - 1 ; j++){
             totalChecks++;
             if (arr[j] > arr[j + 1]){
-                totalSwaps++;
                 swapped = true;
+                totalSwaps++;
                 Swapping(arr, j, j + 1);
             }
         }
-
-        if (!swapped) {
+        if (!swapped){
             break;
         }
     }
-    cout << "Total checking: " << totalChecks << " & Total swapping: " << totalSwaps << endl;
+    cout << "Total Checks: " << totalChecks << " Total Swaps: " << totalSwaps << endl;
 }
 
 void ShowArray(int arr[], int size){
