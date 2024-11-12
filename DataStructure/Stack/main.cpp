@@ -29,6 +29,10 @@ class Stack{
             return (this->height == 0); 
         }
 
+        bool isFull(){
+            return (this->height == this->maxSize);
+        }
+
         void printStack(){
             if (this->isEmpty()){
                 cout << "Stack is empty" << endl;
@@ -42,7 +46,7 @@ class Stack{
         }
 
         void push_node(int value){
-            if (height == this->maxSize){
+            if (this->isFull()){
                 cout << "Stack is full" << endl;
             }else{
             Node* newNode = new Node(value);
@@ -53,7 +57,7 @@ class Stack{
         }
 
         int pop_node(){
-            if (height == 0){
+            if (this->isEmpty()){
                 return INT8_MIN;
             }else{
             Node* temp = this->top;
@@ -64,6 +68,7 @@ class Stack{
             return popped_value;
             }
         }
+
 
 };
 
