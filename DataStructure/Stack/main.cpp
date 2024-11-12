@@ -45,7 +45,14 @@ class Stack{
             top = newNode;
             height++;
         }
-        
+
+        void pop_node(){
+            Node* temp = this->top;
+            top = top->next;
+            cout << temp->value << endl;
+            delete temp;
+        }
+
 };
 
 int main(){
@@ -55,6 +62,9 @@ int main(){
     myStack->push_node(2);
     myStack->push_node(3);
     myStack->push_node(4);
+    myStack->printStack();
+    myStack->pop_node();
+    myStack->pop_node();
     myStack->printStack();
 
 }
