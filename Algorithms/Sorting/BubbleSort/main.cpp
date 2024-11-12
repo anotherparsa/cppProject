@@ -11,19 +11,32 @@ int main(){
     int size = (sizeof(arr) / sizeof(int));
     cout << "Before Bubble Sorting: " << endl;
     ShowArray(arr, size);
-    cout << "After Bubble Sorting: " << endl;
     BubbleSort(arr, size);
+    cout << "After Bubble Sorting: " << endl;
     ShowArray(arr, size);
 }
 
 void BubbleSort(int arr[], int size){
-    for (int i = 1 ; i < size - 1 ; i++){
-        for (int j = 0 ; j < size - i ; j++){
+    int totalChecks = 0;
+    int totalSwaps = 0;
+
+    for (int i = 0 ; i < size - 1 ; i++){
+        bool swapped = false;
+        
+        for(int j = 0 ; j < size - i - 1 ; j++){
+            totalChecks++;
             if (arr[j] > arr[j + 1]){
+                totalSwaps++;
+                swapped = true;
                 Swapping(arr, j, j + 1);
             }
         }
+
+        if (!swapped) {
+            break;
+        }
     }
+    cout << "Total checking: " << totalChecks << " & Total swapping: " << totalSwaps << endl;
 }
 
 void ShowArray(int arr[], int size){
