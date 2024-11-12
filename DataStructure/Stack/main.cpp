@@ -51,6 +51,7 @@ class Stack{
             top = top->next;
             cout << temp->value << endl;
             delete temp;
+            this->height--;
         }
 
 };
