@@ -16,11 +16,13 @@ class Stack{
     private:
         Node* top;
         int height;
+        int maxSize;
     
     public:
         Stack(int maxSize){
             this->top = nullptr;
             this->height = 0;
+            this->maxSize = maxSize;
         }
 
         bool isEmpty(){
@@ -40,10 +42,14 @@ class Stack{
         }
 
         void push_node(int value){
+            if (height == this->maxSize){
+                cout << "Stack is full" << endl;
+            }else{
             Node* newNode = new Node(value);
             newNode->next = top;
             top = newNode;
             height++;
+            }
         }
 
         int pop_node(){
@@ -56,15 +62,13 @@ class Stack{
             delete temp;
             this->height--;
             return popped_value;
-
-
             }
         }
 
 };
 
 int main(){
-    Stack* myStack = new Stack(10);
+    Stack* myStack = new Stack(4);
     myStack->printStack();
     myStack->push_node(1);
     myStack->push_node(2);
@@ -73,6 +77,10 @@ int main(){
     myStack->printStack();
     cout << myStack->pop_node() << endl; 
     cout << myStack->pop_node() << endl; 
+    myStack->printStack();
+    myStack->push_node(5);
+    myStack->push_node(6);
+    myStack->push_node(7);
     myStack->printStack();
 
 }
