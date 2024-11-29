@@ -89,6 +89,22 @@ class LinkedList{
             }
         }
 
+        bool check_contains(int value){
+            if (this->is_list_empty()){
+                return false;
+            }else{
+                Node* temp = this->head;
+                while(temp != nullptr){
+                    if (temp->value == value){
+                        return true;
+                    }else{
+                        temp = temp->next;
+                    }
+                }
+            }
+            return false;
+        }
+
         //it takes an int as index.
         //first it checks if the list is empty or not, if it is, it will show a message.
         //if it's not it will check if the index is valid or not. index must be bigger than 0 and smaller than the length of the list
@@ -416,5 +432,7 @@ int main(){
     cout << "printing the list recursively and in reverse: " << endl;
     my_linked_list->print_list_element_recurisve_reverse(my_linked_list->get_node(0));
     cout << endl;
+    cout << "Checking for 2: " << my_linked_list->check_contains(2) << endl;
+    cout << "Checking for 10: " << my_linked_list->check_contains(10) << endl;
 
 }
