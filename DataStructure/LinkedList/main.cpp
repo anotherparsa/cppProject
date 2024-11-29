@@ -82,6 +82,13 @@ class LinkedList{
             }
         }
 
+        void print_list_element_recurisve_reverse(Node* temp){
+            if (temp != nullptr){
+                this->print_list_element_recurisve_reverse(temp->next);
+                cout << temp->value << " ";
+            }
+        }
+
         //it takes an int as index.
         //first it checks if the list is empty or not, if it is, it will show a message.
         //if it's not it will check if the index is valid or not. index must be bigger than 0 and smaller than the length of the list
@@ -405,6 +412,9 @@ int main(){
     my_linked_list->print_list_elements();
     cout << "printing the list recursively: " << endl;
     my_linked_list->print_list_elements_recursive(my_linked_list->get_node(0)); 
+    cout << endl;
+    cout << "printing the list recursively and in reverse: " << endl;
+    my_linked_list->print_list_element_recurisve_reverse(my_linked_list->get_node(0));
     cout << endl;
 
 }
