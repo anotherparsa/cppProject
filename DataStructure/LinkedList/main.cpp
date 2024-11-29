@@ -75,6 +75,13 @@ class LinkedList{
             }
         }
 
+        void print_list_elements_recursive(Node* temp){
+            if (temp != nullptr){
+                cout << temp->value << " ";
+                this->print_list_elements_recursive(temp->next);
+            }
+        }
+
         //it takes an int as index.
         //first it checks if the list is empty or not, if it is, it will show a message.
         //if it's not it will check if the index is valid or not. index must be bigger than 0 and smaller than the length of the list
@@ -396,5 +403,8 @@ int main(){
     my_linked_list->is_list_sorted();
     my_linked_list->bubble_sort_the_list();
     my_linked_list->print_list_elements();
+    cout << "printing the list recursively: " << endl;
+    my_linked_list->print_list_elements_recursive(my_linked_list->get_node(0)); 
+    cout << endl;
 
 }
