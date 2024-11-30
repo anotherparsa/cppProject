@@ -381,6 +381,19 @@ class LinkedList{
             }
             cout << "Done " << endl;
         }
+
+        void reverseCopyToNewList(LinkedList* secondList){
+            Node* temp = this->head;
+            while(temp != nullptr){
+                Node* new_node = new Node(temp->value);
+                new_node->next = secondList->head;
+                secondList->head = new_node;
+                secondList->length++;
+                temp = temp->next;
+            }
+        }
+
+    
 };
 
 int main(){
@@ -450,5 +463,8 @@ int main(){
     my_linked_list2->append_node(13);
     my_linked_list->merge(my_linked_list2);
     my_linked_list->print_list_elements();
+    LinkedList* my_linked_list3 = new LinkedList;
+    my_linked_list->reverseCopyToNewList(my_linked_list3);
+    my_linked_list3->print_list_elements();
 
 }
