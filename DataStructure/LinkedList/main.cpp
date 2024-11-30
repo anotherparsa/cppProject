@@ -317,11 +317,6 @@ class LinkedList{
             cout << "List has been purged " << endl;
         }
 
-        //it will delete all nodes and free up the memory after the list got deleted
-        ~LinkedList(){
-            this->purge_entire_list();
-        }
-
         //first it will check if the list is empty or not, if it's empty it will show a message
         //if it's not it will check if the length is equal to 1 or not, if it is, that means there is only one element in the list
         //if it's not it will make two nodes, first node and second node.
@@ -393,78 +388,13 @@ class LinkedList{
             }
         }
 
+        //it will delete all nodes and free up the memory after the list got deleted
+        ~LinkedList(){
+            this->purge_entire_list();
+        }
     
 };
 
 int main(){
-    LinkedList* my_linked_list = new LinkedList;
-    my_linked_list->append_node(1);
-    my_linked_list->append_node(2);
-    my_linked_list->print_head_of_list();
-    my_linked_list->print_tail_of_list();
-    my_linked_list->print_length();
-    my_linked_list->print_list_elements();
-    my_linked_list->delete_first_node();
-    my_linked_list->delete_first_node();
-    my_linked_list->print_head_of_list();
-    my_linked_list->print_tail_of_list();
-    my_linked_list->print_length();
-    my_linked_list->print_list_elements();
-    my_linked_list->delete_first_node();
-    my_linked_list->append_node(5);
-    my_linked_list->append_node(6);
-    my_linked_list->set_node_value(0, 10);
-    my_linked_list->set_node_value(1, 222);
-    my_linked_list->set_node_value(2, 233);
-    my_linked_list->append_node(32);
-    my_linked_list->set_node_value(2, 320);
-    my_linked_list->print_head_of_list();
-    my_linked_list->print_tail_of_list();
-    my_linked_list->print_length();
-    my_linked_list->print_list_elements();
-    my_linked_list->insert_node(0, 444);
-    my_linked_list->insert_node(4, 2233);
-    my_linked_list->insert_node(3, 223);
-    my_linked_list->insert_node(212, 333);
-    my_linked_list->print_list_elements();
-    my_linked_list->delete_node(3);
-    my_linked_list->print_list_elements();
-    my_linked_list->delete_node(2);
-    my_linked_list->print_list_elements();
-    my_linked_list->purge_entire_list();
-    my_linked_list->print_list_elements();
-    my_linked_list->append_node(1);
-    my_linked_list->append_node(2);
-    my_linked_list->append_node(3);
-    my_linked_list->append_node(4);
-    my_linked_list->print_list_elements();
-    my_linked_list->is_list_sorted();
-    my_linked_list->purge_entire_list();
-    my_linked_list->append_node(1);
-    my_linked_list->append_node(5);
-    my_linked_list->append_node(2);
-    my_linked_list->append_node(0);
-    my_linked_list->print_list_elements();
-    my_linked_list->is_list_sorted();
-    my_linked_list->bubble_sort_the_list();
-    my_linked_list->print_list_elements();
-    cout << "printing the list recursively: " << endl;
-    my_linked_list->print_list_elements_recursive(my_linked_list->get_node(0)); 
-    cout << endl;
-    cout << "printing the list recursively and in reverse: " << endl;
-    my_linked_list->print_list_element_recurisve_reverse(my_linked_list->get_node(0));
-    cout << endl;
-    cout << "Checking for 2: " << my_linked_list->check_contains(2) << endl;
-    cout << "Checking for 10: " << my_linked_list->check_contains(10) << endl;
-    LinkedList* my_linked_list2 = new LinkedList;
-    my_linked_list2->append_node(10);
-    my_linked_list2->append_node(11);
-    my_linked_list2->append_node(12);
-    my_linked_list2->append_node(13);
-    my_linked_list->merge(my_linked_list2);
-    my_linked_list->print_list_elements();
-    LinkedList* my_linked_list3 = new LinkedList;
-    my_linked_list->reverseCopyToNewList(my_linked_list3);
-    my_linked_list3->print_list_elements();
 
 }
