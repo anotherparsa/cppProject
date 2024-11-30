@@ -372,6 +372,15 @@ class LinkedList{
             this->get_node(a)->value = this->get_node(b)->value;
             this->get_node(b)->value = temp;
         }
+
+        void merge(LinkedList* secondList){
+            Node* temp = secondList->head;
+            while (temp != nullptr){
+                this->append_node(temp->value);
+                temp = temp->next;
+            }
+            cout << "Done " << endl;
+        }
 };
 
 int main(){
@@ -434,5 +443,12 @@ int main(){
     cout << endl;
     cout << "Checking for 2: " << my_linked_list->check_contains(2) << endl;
     cout << "Checking for 10: " << my_linked_list->check_contains(10) << endl;
+    LinkedList* my_linked_list2 = new LinkedList;
+    my_linked_list2->append_node(10);
+    my_linked_list2->append_node(11);
+    my_linked_list2->append_node(12);
+    my_linked_list2->append_node(13);
+    my_linked_list->merge(my_linked_list2);
+    my_linked_list->print_list_elements();
 
 }
