@@ -52,6 +52,19 @@ class DoublyLinkedList{
             cout << "Length of the list : " << this->length << endl;
         }
 
+        void append_node(int value){
+            Node* new_node = new Node(value);
+            if (this->is_list_empty()){
+                this->head = new_node;
+                this->tail = new_node;
+            }else{
+                this->tail->next = new_node;
+                new_node->prev = this->tail;
+                this->tail = new_node;
+            }
+            this->length++;
+        }
+
 
 
 
