@@ -48,6 +48,11 @@ class DoublyLinkedList{
             }
         }
 
+        void print_length(){
+            cout << "Length of the list : " << this->length << endl;
+        }
+
+
 
 
 
