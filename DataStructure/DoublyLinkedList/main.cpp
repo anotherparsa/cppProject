@@ -40,6 +40,14 @@ class DoublyLinkedList{
             }
         }
 
+        void print_tail_of_list(){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else{
+                cout << "The Tail address : " << this->tail << " The Tail value : " << this->tail->value << endl;
+            }
+        }
+
 
 
 
