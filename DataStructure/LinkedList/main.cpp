@@ -388,6 +388,20 @@ class LinkedList{
             }
         }
 
+        void reverseTheList(){
+            Node* temp = this->head;
+            this->head = this->tail;
+            this->tail = temp;
+            Node* after = temp->next;
+            Node* before = nullptr;
+            for (int i = 0 ; i < length ; i++){
+                after = temp->next;
+                temp->next = before;
+                before = temp;
+                temp = after;
+            }
+        }
+
         //it will delete all nodes and free up the memory after the list got deleted
         ~LinkedList(){
             this->purge_entire_list();
@@ -396,5 +410,13 @@ class LinkedList{
 };
 
 int main(){
+    LinkedList* MyLinkedList = new LinkedList();
+    MyLinkedList->append_node(1);
+    MyLinkedList->append_node(2);
+    MyLinkedList->append_node(3);
+    MyLinkedList->append_node(4);
+    MyLinkedList->print_list_elements();
+    MyLinkedList->reverseTheList();
+    MyLinkedList->print_list_elements();
 
 }
