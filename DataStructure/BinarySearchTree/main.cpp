@@ -22,8 +22,8 @@ class BinarySearchTree{
     
     public:
         BinarySearchTree(){
-            this->root = null;
+            this->root = nullptr;
         }
 
-        
+
 }
