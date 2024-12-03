@@ -54,9 +54,35 @@ class BinarySearchTree{
             }
         }
 
+        bool contain(int value){
+            if (this->root == nullptr){
+                return false;
+            }else{
+                Node* temp = this->root;
+                while (temp != nullptr){
+                    if (value < temp->value){
+                        temp = temp->left;
+                    }else if (value > temp->value){
+                        temp = temp -> right;
+                    }else{
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
 
 };
 
 int main(){
-
+    BinarySearchTree* MyBST = new BinarySearchTree;
+    MyBST->insert_node(8);
+    MyBST->insert_node(10);
+    MyBST->insert_node(100);
+    MyBST->insert_node(2);
+    MyBST->insert_node(1);
+    MyBST->insert_node(5);
+    cout << MyBST->contain(100) << endl;
+    cout << MyBST->contain(101) << endl;
 }
