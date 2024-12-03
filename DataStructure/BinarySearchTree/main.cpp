@@ -12,7 +12,57 @@ class Node{
             this->left = nullptr;
             this->right = nullptr;
         }
+};
 
+class QueueNode{
+    public:
+        Node* treeNode;
+        QueueNode* next;
+        QueueNode(Node* treeNode){
+            this->treeNode = treeNode;
+            this->next = nullptr;
+        }
+};
+
+class Queue{
+    public:
+        int length;
+        QueueNode* first;
+        QueueNode* last;
+        Queue(){
+            this->first = nullptr;
+            this->last = nullptr;
+            this->length = 0;
+        }
+        bool is_queue_empty(){
+            return (this->length == 0);
+        }
+        void Enqueue(QueueNode* new_node){
+            if (this->is_queue_empty()){
+                this->first = new_node;
+                this->last = new_node;
+            }else{
+                last->next = new_node;
+                this->last = new_node;
+            }
+            this->length++;
+        }
+        QueueNode* Dequeue() {
+            if (this->length == 0) {
+                return nullptr; 
+            }else {
+                QueueNode* temp = this->first;
+                if (length == 1) {
+                    this->first = nullptr;
+                    this->last = nullptr;
+                } else {
+                    this->first = first->next;
+                }
+                this->length--;
+                return temp;
+            }
+        }
+    
 };
 
 class BinarySearchTree{
@@ -22,7 +72,6 @@ class BinarySearchTree{
         BinarySearchTree(){
             this->root = nullptr;
         }
-
         void insert_node(int value){
             Node* new_node = new Node(value);
             if (this->root == nullptr){
@@ -32,11 +81,12 @@ class BinarySearchTree{
                 Node* temp = this->root;
                 while(true){
                     if (new_node->value == temp->value){
+                        delete new_node;
                         return;
                     }else{
                         if(new_node->value < temp->value){
                             if (temp->left == nullptr){
-                                temp->left == new_node;
+                                temp->left = new_node;
                                 return;
                             }else{
                                 temp = temp->left;
@@ -53,7 +103,6 @@ class BinarySearchTree{
                 }
             }
         }
-
         bool contain(int value){
             if (this->root == nullptr){
                 return false;
@@ -71,8 +120,24 @@ class BinarySearchTree{
             }
             return false;
         }
-
-
+        void Breadth_First_Search(){
+            Queue* BFSQueue = new Queue();
+            BFSQueue->Enqueue(new QueueNode(this->root));
+            while (BFSQueue->length > 0){
+                QueueNode* current_node = BFSQueue->Dequeue();
+                if (current_node != nullptr){
+                    cout << current_node->treeNode->value << " " ;
+                    if (current_node->treeNode->left != nullptr){
+                        BFSQueue->Enqueue(new QueueNode(current_node->treeNode->left));
+                    }
+                    if (current_node->treeNode->right != nullptr){
+                        BFSQueue->Enqueue(new QueueNode(current_node->treeNode->right));
+                    }
+                }
+            }
+            cout << endl;
+        }
+        
 };
 
 int main(){
@@ -83,6 +148,5 @@ int main(){
     MyBST->insert_node(2);
     MyBST->insert_node(1);
     MyBST->insert_node(5);
-    cout << MyBST->contain(100) << endl;
-    cout << MyBST->contain(101) << endl;
+    MyBST->Breadth_First_Search();      
 }
