@@ -51,6 +51,24 @@ class Queue{
             this->length++;
         }
 
+        int Dequeue(){
+            if (this->length == 0){
+                return 11111;
+            }else{
+                Node* temp = this->first;
+                int DeQueuedValue = first->value;
+                if (length == 1){
+                    this->first = nullptr;
+                    this->last = nullptr;
+                }else{
+                    this->first = first->next;
+                }
+                delete temp;
+                this->length--;
+                return DeQueuedValue;
+            }
+        }
+
 };
 
 int main(){
@@ -60,5 +78,7 @@ int main(){
     MyQueue->Enqueue(22);
     MyQueue->Enqueue(123);
     MyQueue->print_queue();
+    cout << MyQueue->Dequeue() << endl;
+    cout << MyQueue->Dequeue() << endl;
 
 }
