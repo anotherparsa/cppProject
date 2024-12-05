@@ -152,6 +152,21 @@ class BinarySearchTree{
             this->Depth_First_Search_PreOrder(this->root);
             cout << endl;
         }
+
+        void Depth_First_Search_PostOrder(Node* CurrentNode){
+            if (CurrentNode->left != nullptr){
+                this->Depth_First_Search_PostOrder(CurrentNode->left);
+            }
+            if (CurrentNode->right != nullptr){
+                this->Depth_First_Search_PostOrder(CurrentNode->right);
+            }
+            cout << CurrentNode->value << " ";
+        }
+
+        void Depth_First_Search_PostOrder(){
+            this->Depth_First_Search_PostOrder(this->root);
+            cout << endl;
+        }
         
 };
 
@@ -165,4 +180,5 @@ int main(){
     MyBST->insert_node(5);
     MyBST->Breadth_First_Search();      
     MyBST->Depth_First_Search_PreOrder();
+    MyBST->Depth_First_Search_PostOrder();
 }
