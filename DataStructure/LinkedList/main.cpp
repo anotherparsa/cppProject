@@ -17,31 +17,37 @@ class LinkedList{
         Node* head;
         Node* tail;
         int length;
+
     public:
-        //makes a Linked List with head node pointing to nullptr, tail node pointing to nullptr and length of 0
+        //makes a Linked List with head node pointing to nullptr, tail node pointing to nullptr and length of 0.
         LinkedList(){
             this->head = nullptr;
             this->tail = nullptr;
             this->length = 0;
         }
-        
-        //checks if the head node is pointing to nullptr or the length is 0 which means the list is empty
-        bool is_list_empty(){
-            return (this->head == nullptr || this->length == 0);
+
+        //it will delete all nodes and free up the memory after the list got deleted.
+        ~LinkedList(){
+            this->purge_list();
         }
 
-        //first check if the list is empty or not if the list is empty it will show a message 
-        //if list is not empty it will print the value and the address of head node
+        //checks if the length is 0 which means the list is empty.
+        bool is_list_empty(){
+            return (this->length == 0);
+        }
+
+        //first check if the list is empty or not if the list is empty it will show a message.
+        //if the list is not empty it will print the value and the address of Head node.
         void print_head_of_list(){
             if (this->is_list_empty()){
-                cout << "There are no Nodes in the list" << endl;
+                cout << "There are no Nodes in the list!" << endl;
             }else{
                 cout << "The Head address : " << this->head << " The Head value : " << this->head->value << endl;
             }
         }
 
-        //first check if the list is empty or not if the list is empty it will show a message 
-        //if list is not empty it will print the value and the address of tail node
+        //first check if the list is empty or not if the list is empty it will show a message.
+        //if the list is not empty it will print the value and the address of Tail node.
         void print_tail_of_list(){
             if (this->is_list_empty()){
                 cout << "There are no Nodes in the list" << endl;
@@ -73,36 +79,6 @@ class LinkedList{
                 }
                 cout << endl;
             }
-        }
-
-        void print_list_elements_recursive(Node* temp){
-            if (temp != nullptr){
-                cout << temp->value << " ";
-                this->print_list_elements_recursive(temp->next);
-            }
-        }
-
-        void print_list_element_recurisve_reverse(Node* temp){
-            if (temp != nullptr){
-                this->print_list_element_recurisve_reverse(temp->next);
-                cout << temp->value << " ";
-            }
-        }
-
-        bool check_contains(int value){
-            if (this->is_list_empty()){
-                return false;
-            }else{
-                Node* temp = this->head;
-                while(temp != nullptr){
-                    if (temp->value == value){
-                        return true;
-                    }else{
-                        temp = temp->next;
-                    }
-                }
-            }
-            return false;
         }
 
         //it takes an int as index.
@@ -229,25 +205,6 @@ class LinkedList{
             }
         }
 
-        //it will take two value index and value.
-        //first it will check if the list is empty or not, if it's then it will show a message.
-        //if it's not it will check the index, it must be bigger than 0 and smalled than the list's length
-        //after validating the index it will make temp node and equals it to the node at index provided.
-        //then it will set its value to the value provided.
-        //this way the value of a node will be changed.
-        void set_node_value(int index, int value){
-            if (this->is_list_empty()){
-                cout << "There are no Nodes in the list" << endl;
-            }else if (index < 0 || index >= this->length){
-                cout << "Invalid Index" << endl;
-            }else{
-                Node* temp = this->get_node(index);
-                cout << "Node at the index of " << index << " Has the value of " << temp->value ;
-                temp->value = value;
-                cout << " Now the value is set to " << value << endl;
-            }
-        }
-
         //it will take two values index and value.
         //first it check the index, index must be bigger than zero and in this case just not be bigger than index.
         //if the index is equal to 0 it's same as prepending a node and if the index is equal to the list's length it's same as appending a node
@@ -305,16 +262,33 @@ class LinkedList{
                 this->length--;
             }
         }
+
+        //it will take two value index and value.
+        //first it will check if the list is empty or not, if it's then it will show a message.
+        //if it's not it will check the index, it must be bigger than 0 and smalled than the list's length
+        //after validating the index it will make temp node and equals it to the node at index provided.
+        //then it will set its value to the value provided.
+        //this way the value of a node will be changed.
+        void set_node_value(int index, int value){
+            if (this->is_list_empty()){
+                cout << "There are no Nodes in the list" << endl;
+            }else if (index < 0 || index >= this->length){
+                cout << "Invalid Index" << endl;
+            }else{
+                Node* temp = this->get_node(index);
+                cout << "Node at the index of " << index << " Has the value of " << temp->value ;
+                temp->value = value;
+                cout << " Now the value is set to " << value << endl;
+            }
+        }
+
         //it will purge the entire list
         //it will delete the first node at each iteration
-        //unitle the temp node reaches the nullptr
-        void purge_entire_list(){
-            Node* temp = this->head;
-            while (temp != nullptr){
-                temp = temp->next;
+        void purge_list(){
+            for (int i = 0 ; i < this->length ; i++){
                 this->delete_first_node();
             }
-            cout << "List has been purged " << endl;
+            cout << "List has been purged" << endl;
         }
 
         //first it will check if the list is empty or not, if it's empty it will show a message
@@ -345,7 +319,6 @@ class LinkedList{
                 }else{
                     cout << "The list is not sorted" << endl;
                 }
-
             }
         }
 
@@ -368,6 +341,7 @@ class LinkedList{
             this->get_node(b)->value = temp;
         }
 
+        //merges two linked list, by appending nodes from the second list to the end of the first list.
         void merge(LinkedList* secondList){
             Node* temp = secondList->head;
             while (temp != nullptr){
@@ -377,7 +351,13 @@ class LinkedList{
             cout << "Done " << endl;
         }
 
-        void reverseCopyToNewList(LinkedList* secondList){
+        //merges two linked list, by pointers.
+        void merge_by_address(LinkedList* secondList){
+            this->tail->next = secondList->head;
+            this->tail = secondList->tail;
+        }
+
+        void reverse_copy_to_mewList(LinkedList* secondList){
             Node* temp = this->head;
             while(temp != nullptr){
                 Node* new_node = new Node(temp->value);
@@ -388,7 +368,7 @@ class LinkedList{
             }
         }
 
-        void reverseTheList(){
+        void reverse_the_list(){
             Node* temp = this->head;
             this->head = this->tail;
             this->tail = temp;
@@ -402,21 +382,38 @@ class LinkedList{
             }
         }
 
-        //it will delete all nodes and free up the memory after the list got deleted
-        ~LinkedList(){
-            this->purge_entire_list();
+        void print_list_elements_recursive(Node* temp){
+            if (temp != nullptr){
+                cout << temp->value << " ";
+                this->print_list_elements_recursive(temp->next);
+            }
+        }
+
+        void print_list_element_recurisve_reverse(Node* temp){
+            if (temp != nullptr){
+                this->print_list_element_recurisve_reverse(temp->next);
+                cout << temp->value << " ";
+            }
+        }
+
+        bool check_contains(int value){
+            if (this->is_list_empty()){
+                return false;
+            }else{
+                Node* temp = this->head;
+                while(temp != nullptr){
+                    if (temp->value == value){
+                        return true;
+                    }else{
+                        temp = temp->next;
+                    }
+                }
+            }
+            return false;
         }
     
 };
 
 int main(){
-    LinkedList* MyLinkedList = new LinkedList();
-    MyLinkedList->append_node(1);
-    MyLinkedList->append_node(2);
-    MyLinkedList->append_node(3);
-    MyLinkedList->append_node(4);
-    MyLinkedList->print_list_elements();
-    MyLinkedList->reverseTheList();
-    MyLinkedList->print_list_elements();
-
+    
 }
