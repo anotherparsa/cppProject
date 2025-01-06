@@ -65,13 +65,44 @@ class DoublyLinkedList{
             this->length++;
         }
 
+        void print_list_elements(){
+            Node* temp = this->head;
+            while(temp != nullptr){
+                cout << temp->value << " ";
+                temp = temp->next;
+            }
+            cout << endl;
+        }
 
-
+        void merge(DoublyLinkedList* secondList){
+            this->tail->next = secondList->head;
+            secondList->head->prev = this->tail;
+            this->tail = secondList->tail;
+        }
 
 
 };
 
 
 int main(){
-    DoublyLinkedList* MyDoublyLinkedList = new DoublyLinkedList();
+    DoublyLinkedList* list1 = new DoublyLinkedList();
+    DoublyLinkedList* list2 = new DoublyLinkedList();
+    list1->append_node(1);
+    list1->append_node(2);
+    list1->append_node(3);
+    list1->append_node(4);
+    list2->append_node(5);
+    list2->append_node(6);
+    list2->append_node(7);
+    list2->append_node(8);
+    cout << "List 1 Before merging" << endl;
+    list1->print_list_elements();
+    cout << "List 2 Before merging" << endl;
+    list2->print_list_elements();
+    list1->merge(list2);
+    cout << "list 1 After merging" << endl;
+    list1->print_list_elements();
+    cout << "list 2 After merging" << endl;
+    list2->print_list_elements();
+    
 }

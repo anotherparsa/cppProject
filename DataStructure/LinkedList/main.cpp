@@ -36,41 +36,39 @@ class LinkedList{
             return (this->length == 0);
         }
 
-        //first check if the list is empty or not if the list is empty it will show a message.
-        //if the list is not empty it will print the value and the address of Head node.
-        void print_head_of_list(){
-            if (this->is_list_empty()){
-                cout << "There are no Nodes in the list!" << endl;
+        //first check if the list is empty or not if the list is empty it will return null pointer.
+        //if the list is not empty it will return head node.
+        Node* return_head(){
+            if (!this->is_list_empty()){
+                return (this->head);
             }else{
-                cout << "The Head address : " << this->head << " The Head value : " << this->head->value << endl;
+                return nullptr;
             }
         }
 
-        //first check if the list is empty or not if the list is empty it will show a message.
-        //if the list is not empty it will print the value and the address of Tail node.
-        void print_tail_of_list(){
-            if (this->is_list_empty()){
-                cout << "There are no Nodes in the list" << endl;
+        //first check if the list is empty or not if the list is empty it will return null pointer.
+        //if the list is not empty it will return tail node.
+        Node* return_tail(){
+            if (!this->is_list_empty()){
+                return (this->tail);
             }else{
-                cout << "The Tail address : " << this->tail << " The Tail value : " << this->tail->value << endl;
+                return nullptr;
             }
         }
 
-        //just shows the value of length variable
-        void print_length(){
-            cout << "Length of the list : " << this->length << endl;
+        //returns the length of the list.
+        int return_length(){
+            return this->length;
         }
 
         //first it checks if the list is empty or not, if it is it will show a message.
         //then it will make a temp node and the value is head node,and puts it into a while loop
-        //the loop will go while the value of temp node is not equal to nullptr.
+        //the loop will go, while the value of temp node is not equal to nullptr.
         //it will show the value of current temp node which is the head node and after that 
         //will go to the next node and it keeps doing it until it shows the last node value and the value of temp node 
         //will be nullptr and then it will gets out of the loop
         void print_list_elements(){
-            if (this->is_list_empty()){
-                cout << "There are no Nodes in the list" << endl;
-            }else{
+            if (!this->is_list_empty()){
                 cout << "List Items: " << endl;
                 Node* temp = this->head;
                 while(temp != nullptr){
@@ -78,29 +76,31 @@ class LinkedList{
                     temp = temp->next;
                 }
                 cout << endl;
+            }else{
+                cout << "There are no Nodes in the list!" << endl;
             }
         }
 
         //it takes an int as index.
-        //first it checks if the list is empty or not, if it is, it will show a message.
+        //first it checks if the list is empty or not, if it is, it will return null pointer.
         //if it's not it will check if the index is valid or not. index must be bigger than 0 and smaller than the length of the list
         //otherwise it's an invalid index.
         //if the index is valid it will make a temp node with the value of head node.
         //and go forward index times in sequence to reach the node at the index provided.
         //then it will return that node
         Node* get_node(int index){
-            if (this->is_list_empty()){
-                cout << "There are no Nodes in the list " << endl;
-                return nullptr;
-            }else if (index < 0 || index >= this->length){
-                cout << "Invalid Index " << endl;
-                return nullptr;
-            }else{
-                Node* temp = this->head;
-                for (int i = 0 ; i < index ; i++){
-                    temp = temp->next;
+            if (!this->is_list_empty()){
+                if (!(index < 0 || index >= this->length)){
+                    Node* temp = this->head;
+                    for (int i = 0 ; i < index ; i++){
+                        temp = temp->next;
+                    }
+                    return temp;
+                }else{
+                    return nullptr;
                 }
-                return temp;
+            }else{
+                return nullptr;
             }
         }
 
@@ -114,15 +114,14 @@ class LinkedList{
         //then we increment the list's length by one since a new node has been added.
         void append_node(int value){
             Node* new_node = new Node(value);
-            if (this->is_list_empty()){
-                this->head = new_node;
+            if (!this->is_list_empty()){
+                this->tail->next = new_node;
                 this->tail = new_node;
             }else{
-                this->tail->next = new_node;
+                this->head = new_node;
                 this->tail = new_node;
             }
             this->length++;
-            cout << "New Node with the value of " << value << " Has been added to the end of the list" << endl;
         }
 
         //it will take an int as value of the new node
@@ -135,15 +134,14 @@ class LinkedList{
         //then we increment the list's length by one since a new node has been added.
         void prepend_node(int value){
             Node* new_node = new Node(value);
-            if (this->is_list_empty()){
-                this->head = new_node;
-                this->tail = new_node;
-            }else{
+            if (!this->is_list_empty()){
                 new_node->next = this->head;
                 this->head = new_node;
+            }else{
+                this->head = new_node;
+                this->tail = new_node;
             }
             this->length++;
-            cout << "New Node with the value of " << value << " Has been added to the beginning of the list" << endl;
         }
 
         //first it will check if the list is empty or not, if it's empty it will show a message
@@ -158,22 +156,19 @@ class LinkedList{
         //after that we delete the temp value which was the old last node.
         //and decrement the list's length value by one since a node is deleted.
         void delete_last_node(){
-            if (this->is_list_empty()){
-                cout << "There are no Nodes in the list" << endl;
-            }else if (this->length == 1){
-                Node* temp = this->head;
-                cout << "Node with the value of " << temp->value << " Has been deleted from the end of the list" << endl;
-                delete temp;
-                this->length--;
-                this->head = nullptr;
-                this->tail = nullptr;
-            }else{
-                Node* temp = this->tail;
-                Node* previous_node = this->get_node(this->length - 2);
-                previous_node->next = nullptr;
-                this->tail = previous_node;
-                cout << "Node with the value of " << temp->value << " Has been deleted from the end of the list" << endl;
-                delete temp;
+            if (!this->is_list_empty()){
+                if (this->length == 1){
+                    Node* temp = this->head;
+                    this->head = nullptr;
+                    this->tail = nullptr;
+                    delete temp;
+                }else{
+                    Node* temp = this->tail;
+                    Node* previous_node = this->get_node(this->length - 2);
+                    previous_node->next = nullptr;
+                    this->tail = previous_node;
+                    delete temp;
+                }
                 this->length--;
             }
         }
@@ -187,20 +182,17 @@ class LinkedList{
         //then we make the node after the current first node as the new first node since the current first node is going to be deleted
         //and decrement the list's length value by one since a node is deleted.
         void delete_first_node(){
-            if (this->is_list_empty()){
-                cout << "There are no Nodes in the list" << endl;
-            }else if (this->length == 1){
-                Node* temp = this->head;
-                cout << "Node with the value of " << temp->value << " Has been deleted from the beginning of the list" << endl;
-                delete temp;
-                this->length--;
-                this->head = nullptr;
-                this->tail = nullptr;
-            }else{
-                Node* temp = this->head;
-                this->head = this->head->next;
-                cout << "Node with the value of " << temp->value << " Has been deleted from the beginning of the list" << endl;
-                delete temp;
+            if (!this->is_list_empty()){
+                if (this->length == 1){
+                    Node* temp = this->head;
+                    this->head = nullptr;
+                    this->tail = nullptr;
+                    delete temp;
+                }else{
+                    Node* temp = this->head;
+                    this->head = this->head->next;
+                    delete temp;
+                }
                 this->length--;
             }
         }
@@ -218,21 +210,19 @@ class LinkedList{
         //then we increment the list's length by one since a node has been inserted
         void insert_node(int index, int value){
             if (index < 0 || index > this->length){
-                cout << "Invalid Index" << endl;
-            }else if (index == 0){
-                this->prepend_node(value);
-            }else if (index == this->length){
-                this->append_node(value);
-            }else{
-                Node* new_node = new Node(value);
-                Node* previous = this->get_node(index - 1);
-                new_node->next = previous->next;
-                previous->next = new_node;
-                this->length++;
-                cout << "New Node with the value of " << value << " Has been added at index " << index << endl;
+                if(index == 0){
+                    this->prepend_node(value);
+                }else if (index == this->length){
+                    this->append_node(value);
+                }else{
+                    Node* new_node = new Node(value);
+                    Node* previous = this->get_node(index - 1);
+                    new_node->next = previous->next;
+                    previous->next = new_node;
+                    this->length++;
+                }
             }
         }
-
         //it will take an int as the index of the node that is going to be deleted
         //then it will check if the list is empty or not, if it's it will show a message, if it's not
         //it will check to see if the index is valid or not.
@@ -247,7 +237,7 @@ class LinkedList{
         void delete_node(int index){
             if (this->is_list_empty()){
                 cout << "There are no Nodes in the list" << endl;
-            }else if (index < 0 || index >= this->length){
+            }else if (index < 0 && index >= this->length){
                 cout << "Invalid index" << endl;
             }else if (index == 0){
                 this->delete_first_node();
@@ -415,5 +405,18 @@ class LinkedList{
 };
 
 int main(){
-    
+    LinkedList* list1 = new LinkedList();
+    LinkedList* list2 = new LinkedList();
+    list1->append_node(1);
+    list1->append_node(2);
+    list1->append_node(3);
+    list1->append_node(4);
+    list2->append_node(5);
+    list2->append_node(6);
+    list2->append_node(7);
+    list2->append_node(8);
+    list1->print_list_elements();
+    list2->print_list_elements();
+    list1->merge_by_address(list2);
+    list1->print_list_elements();
 }
